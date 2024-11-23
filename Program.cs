@@ -1,10 +1,28 @@
-﻿namespace c_sharp_class_2
+﻿using c_sharp_class_2.Classes;
+
+namespace c_sharp_class_2
 {
     internal class Program
-    {//dev
+    {//lab ex.1
         static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            try
+            {
+                Console.WriteLine("Enter line to convert int:");
+                string? input = Console.ReadLine();
+                if (input == null)
+                {
+                    throw new Exception("Input is null");
+                }
+                int number = new StringIntCovert(input).Output_int;
+                Console.WriteLine($"Output int: {number}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exeptinon {ex}");
+            }
+            
         }
     }
 }
