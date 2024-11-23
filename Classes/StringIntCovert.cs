@@ -11,7 +11,8 @@ namespace c_sharp_class_2.Classes
         {
             try
             {
-                if (Input_string == null) {
+                if (Input_string == null)
+                {
                     throw new Exception("Input is null");
                 }
 
@@ -22,9 +23,11 @@ namespace c_sharp_class_2.Classes
                     Input_string = Input_string.Substring(1);
                 }
 
-                if (Input_string.Length > 10 || (Input_string.Length == 10 && Input_string.CompareTo("2147483647") > 0))
+                if (Input_string.Length > 10 || (Input_string.Length == 10 &&
+                    ((negative && Input_string.CompareTo("2147483648") > 0) ||
+                    (!negative && Input_string.CompareTo("2147483647") > 0))))
                 {
-                    throw new Exception("String represents a number larger than int.MaxValue");
+                    throw new Exception("String represents a number larger than int.MaxValue or smaller than int.MinValue");
                 }
 
                 int result = 0;
@@ -53,7 +56,6 @@ namespace c_sharp_class_2.Classes
                 return 0;
             }
         }
-
 
         public StringIntCovert()
         {
