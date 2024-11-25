@@ -108,7 +108,36 @@ namespace c_sharp_class_2
 
             try
             {
-                return Convert.ToInt32(hexString, 16);
+                int result = 0;
+                for (int i = 0; i < hexString.Length; i++)
+                {
+                    char hexChar = hexString[i];
+                    int hexValue;
+
+                    if (hexChar >= '0' && hexChar <= '9')
+                    {
+                        hexValue = hexChar - '0';
+                    }
+                    else if (hexChar >= 'A' && hexChar <= 'F')
+                    {
+                        hexValue = 10 + (hexChar - 'A');
+                    }
+                    else if (hexChar >= 'a' && hexChar <= 'f')
+                    {
+                        hexValue = 10 + (hexChar - 'a');
+                    }
+                    else
+                    {
+                        throw new ArgumentException("String contains non-hexadecimal characters.");
+                    }
+
+                    result = result * 16 + hexValue;
+                    if (result > int.MaxValue)
+                    {
+                        throw new OverflowException("Result exceeds int.MaxValue.");
+                    }
+                }
+                return result;
             }
             catch (FormatException)
             {
